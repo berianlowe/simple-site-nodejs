@@ -25,7 +25,7 @@ user = (request, response) => {
         // get JSON from Treehouse
         const studentProfile = new Profile(username);
         //on end
-        studentProfile.on("end", function (profileJSON) {
+        studentProfile.on("end", (profileJSON) => {
             // show Profile
 
             //Store the values we need
@@ -40,7 +40,7 @@ user = (request, response) => {
             response.end("Footer\n");
         });
         //on error
-        studentProfile.on("error", function (error) {
+        studentProfile.on("error", (error) => {
             //show error
             response.write(`${error.message} \n`);
             response.end("Footer\n");
