@@ -1,7 +1,7 @@
 var Profile = require("./profile.js");
 
 
-var studentProfile = new Profile("chalkers");
+var studentProfile = new Profile("berianlowe");
 
 /**
 * When the JSON body is fully recieved the 
