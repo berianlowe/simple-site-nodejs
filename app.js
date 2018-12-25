@@ -10,30 +10,35 @@ const hostname = '127.0.0.1';
 const port = 3000;
 
 const server = http.createServer((request, response) => {
-  response.statusCode = 200;
-  response.setHeader('Content-Type', 'text/plain');
-  setInterval(() => response.write(new Date() + "\n", 1000));
-//   response.end('Hello World\n');
+    homeRoute(request, response);
 });
 
 server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+    console.log(`Server running at http://${hostname}:${port}/`);
 });
 
 // 2. Handle HTTP route GET / and POST / i.e Home
-  // if url == "/" && GET
-    // show search
-  // if url == "/" && POST
+const homeRoute = (request, response) => {
+    // if url == "/" && GET
+    if (request.url === "/") {
+        // show search
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'text/plain');
+        response.write("Header\n");
+        response.write("Search\n");
+        response.end("Footer\n");
+    }
+    // if url == "/" && POST
     //redirect to /:username
-
+}
 // 3. Handle HTTP route GET :/username i.e. /berianlowe
-  // if url == "/...."
-    // get json from Treehouse
-      // on "end"
+    // if url == "/...."
+        // get json from Treehouse
+    // on "end"
         // show profile
-      // on "error"
+    // on "error"
         // show error
 
 // 4. Function that handles the reading of files and merge in values
-  // read from file and get a string
+    // read from file and get a string
     // merge values in to string
