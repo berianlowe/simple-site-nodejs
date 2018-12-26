@@ -1,29 +1,42 @@
 const Profile = require("./profile.js");
 const renderer = require("./renderer.js");
+const querystring = require("querystring");
+const html = {
+    "Content-Type": "text/html"
+}
 
 // Handle HTTP route GET / and POST / i.e Home
 home = (request, response) => {
     // if url == "/" && GET
     if (request.url === "/") {
-        // show search
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'text/plain');
-        renderer.view("header", {}, response);
-        renderer.view("search", {}, response);
-        renderer.view("footer", {}, response);
-        response.end();
-
+        if (request.method.toLowerCase() === "get") {
+            // show search
+            response.writeHead(200, html);
+            renderer.view("header", {}, response);
+            renderer.view("search", {}, response);
+            renderer.view("footer", {}, response);
+            response.end();
+        } else {
+            // if url == "/" && POST
+            // get the post data from body
+            request.on("data", (postBody) => {
+                // extract username
+                const query = querystring.parse(postBody.toString());
+                //redirect to /:username
+                response.writeHead(303, {
+                    "Location": `/${query.username}`
+                });
+                response.end();
+            });
+        }
     }
-    // if url == "/" && POST
-    //redirect to /:username
 }
 // Handle HTTP route GET :/username i.e. /berianlowe
 user = (request, response) => {
     // if url == "/...."
     const username = request.url.replace("/", "");
     if (username.length > 0) {
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'text/plain');
+        response.writeHead(200, html);
         renderer.view("header", {}, response);
         // get JSON from Treehouse
         const studentProfile = new Profile(username);
@@ -56,5 +69,6 @@ user = (request, response) => {
         });
     };
 }
+
 module.exports.home = home;
 module.exports.user = user;

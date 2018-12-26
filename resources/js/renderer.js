@@ -11,7 +11,7 @@ mergeValues = (values, content) => {
 }
 
 view = (templateName, values, response) => {
-    //Read from temlate file
+    //Read from template file
     let fileContents =
         fs.readFileSync(`./views/${templateName}.html`, {
             encoding: "utf8"

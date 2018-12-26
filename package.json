@@ -1,0 +1,29 @@
+{
+  "name": "simple-site-nodejs",
+  "version": "1.0.0",
+  "description": "Treehouse Course: 'Build a Simple Dynamic Site with Node.js'",
+  "main": "/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berianlowe/simple-site-nodejs.git"
+  },
+  "keywords": [
+    "Node.js",
+    "Dynamic",
+    "Site",
+    "Team",
+    "Treehouse"
+  ],
+  "author": "Berian Lowe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/berianlowe/simple-site-nodejs/issues"
+  },
+  "homepage": "https://github.com/berianlowe/simple-site-nodejs#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
