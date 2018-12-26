@@ -1,7 +1,7 @@
-var EventEmitter = require("events").EventEmitter;
-var https = require("https");
-var http = require("http");
-var util = require("util");
+const EventEmitter = require("events").EventEmitter;
+const https = require("https");
+const http = require("http");
+const util = require("util");
 
 /**
  * An EventEmitter to get a Treehouse students profile.
@@ -15,13 +15,13 @@ function Profile(username) {
     profileEmitter = this;
 
     //Connect to the API URL (https://teamtreehouse.com/username.json)
-    var request = https.get("https://teamtreehouse.com/" + username + ".json", function(response) {
-        var body = "";
+    const request = https.get(`https://teamtreehouse.com/${username}.json`, function(response) {
+        let body = "";
 
         if (response.statusCode !== 200) {
             request.abort();
             //Status Code Error
-            profileEmitter.emit("error", new Error("There was an error getting the profile for " + username + ". (" + http.STATUS_CODES[response.statusCode] + ")"));
+            profileEmitter.emit("error", new Error(`There was an error getting the profile for ${username}. (${http.STATUS_CODES[response.statusCode]})`));
         }
 
         //Read the data
